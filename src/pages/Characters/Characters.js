@@ -1,3 +1,12 @@
+/*
+Key Features Explained:
+* Fetching Data: Handles paginated API requests to get all characters.
+* Pagination: Displays characters in chunks (charactersPerPage), loading more on demand.
+* Search Functionality: Filters characters by name in real-time.
+* Error Handling: Logs any errors during data fetching.
+* Conditional Rendering: Shows loading messages, handles empty search results, and controls the visibility of the "Load More" button.
+*/
+
 // Import necessary React hooks and components
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
@@ -131,13 +140,3 @@ function Characters() {
 }
 
 export default Characters;
-
-
-/*
-Key Features Explained:
-* Fetching Data: Handles paginated API requests to get all characters.
-* Pagination: Displays characters in chunks (charactersPerPage), loading more on demand.
-* Search Functionality: Filters characters by name in real-time.
-* Error Handling: Logs any errors during data fetching.
-* Conditional Rendering: Shows loading messages, handles empty search results, and controls the visibility of the "Load More" button.
-*/
