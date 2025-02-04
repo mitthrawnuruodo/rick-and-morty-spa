@@ -102,6 +102,7 @@ This project is licensed under the MIT License.
 - [React Router](https://reactrouter.com/)
 - [Parcel](https://parceljs.org/)
 - [Rick and Morty API](https://rickandmortyapi.com/)
+- [Rick and Morty Loren Ipsum Generator](https://felipemotabr.github.io/rick-and-morty-ipsum-generator/)
 
 ---
 
