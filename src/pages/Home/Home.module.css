@@ -28,8 +28,12 @@
 }
 
 .main {
-  margin: 20px auto;
-  padding: 20px;
+  margin: 24px auto;
+  padding: 12px 20px;
   max-width: 720px;
   background-color: #def;
+
+  h2, p {
+    margin-bottom: 12px;
+  }
 }
