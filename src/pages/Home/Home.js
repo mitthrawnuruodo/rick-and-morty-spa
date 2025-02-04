@@ -1,3 +1,4 @@
+import { Link } from 'react-router';
 import styles from './Home.module.css';
 
 function Home() {
@@ -5,8 +6,7 @@ function Home() {
     <div className={styles.hero}>
       <div className={styles.overlay}>
         <h1>Welcome to the Rick & Morty Universe</h1>
-        <a href="/characters" className={styles.cta}>Explore Characters</a>
-      </div>
+        <Link to="/characters" className={styles.cta}>Explore Characters</Link>      </div>
     </div>
   );
 }
