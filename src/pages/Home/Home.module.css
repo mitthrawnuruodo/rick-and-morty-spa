@@ -26,3 +26,10 @@
   border-radius: 5px;
   font-family: 'Roboto', sans-serif; /* Use Roboto for the button */
 }
+
+.main {
+  margin: 20px auto;
+  padding: 20px;
+  max-width: 720px;
+  background-color: #def;
+}
