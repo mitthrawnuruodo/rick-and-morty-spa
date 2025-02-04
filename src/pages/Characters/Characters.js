@@ -96,7 +96,7 @@ function Characters() {
 
   return (
     <div className={styles.characters}>
-      <h1>Characters</h1>
+      <h1>Characters of Rick and Morty</h1>
 
       {/* Search Input */}
       <input

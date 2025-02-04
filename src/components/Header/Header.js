@@ -4,7 +4,7 @@ import styles from "./Header.module.css";
 function Header() {
   return (
     <header className={styles.header}>
-      <Link to="/" className={styles.logo}>Rick & Morty</Link>
+      <Link to="/" className={styles.logo}>Rick and Morty</Link>
       <nav>
         <ul className={styles.menu}>
           <li><Link to="/">Home</Link></li>
