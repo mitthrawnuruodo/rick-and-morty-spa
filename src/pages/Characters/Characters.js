@@ -3,19 +3,30 @@ import { Link } from "react-router";
 import styles from "./Characters.module.css";
 
 function Characters() {
-  const [characters, setCharacters] = useState([]);
-  const [page, setPage] = useState(1);
-  const [hasMore, setHasMore] = useState(true); // Track if more characters are available
-  const [loading, setLoading] = useState(false); // Track loading state
+  const [allCharacters, setAllCharacters] = useState([]);
+  const [visibleCharacters, setVisibleCharacters] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(false);
+  const charactersPerPage = 12;
 
-  const fetchCharacters = async (currentPage) => {
+  const fetchAllCharacters = async () => {
     setLoading(true);
     try {
-      const response = await fetch(`https://rickandmortyapi.com/api/character?page=${currentPage}`);
-      const data = await response.json();
+      let allData = [];
+      let page = 1;
+      let hasMore = true;
 
-      setCharacters((prev) => [...prev, ...data.results]); // Append new characters
-      setHasMore(data.info.next !== null); // Check if more pages are available
+      while (hasMore) {
+        const response = await fetch(`https://rickandmortyapi.com/api/character?page=${page}`);
+        const data = await response.json();
+
+        allData = [...allData, ...data.results];
+        hasMore = data.info.next !== null;
+        page++;
+      }
+
+      setAllCharacters(allData);
+      setVisibleCharacters(allData.slice(0, charactersPerPage));
     } catch (error) {
       console.error("Error fetching characters:", error);
     } finally {
@@ -24,18 +35,26 @@ function Characters() {
   };
 
   useEffect(() => {
-    fetchCharacters(page);
-  }, [page]);
+    fetchAllCharacters();
+  }, []);
 
   const handleLoadMore = () => {
-    setPage((prevPage) => prevPage + 1);
+    const nextPage = currentPage + 1;
+    const startIndex = (nextPage - 1) * charactersPerPage;
+    const endIndex = startIndex + charactersPerPage;
+
+    setVisibleCharacters((prev) => [
+      ...prev,
+      ...allCharacters.slice(startIndex, endIndex),
+    ]);
+    setCurrentPage(nextPage);
   };
 
   return (
     <div className={styles.characters}>
       <h1>Characters</h1>
       <ul>
-        {characters.map((character) => (
+        {visibleCharacters.map((character) => (
           <li key={character.id} className={styles.card}>
             <Link to={`/characters/${character.id}`}>
               <img src={character.image} alt={character.name} />
@@ -45,9 +64,9 @@ function Characters() {
         ))}
       </ul>
 
-      {loading && <p>Loading...</p>}
+      {loading && <p>Loading all characters...</p>}
 
-      {hasMore && !loading && (
+      {!loading && visibleCharacters.length < allCharacters.length && (
         <button onClick={handleLoadMore} className={styles.loadMore}>
           Load More
         </button>
