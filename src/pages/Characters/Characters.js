@@ -7,6 +7,7 @@ function Characters() {
   const [visibleCharacters, setVisibleCharacters] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(false);
+  const [searchQuery, setSearchQuery] = useState(""); // Track search input
   const charactersPerPage = 12;
 
   const fetchAllCharacters = async () => {
@@ -50,9 +51,35 @@ function Characters() {
     setCurrentPage(nextPage);
   };
 
+  const handleSearch = (event) => {
+    const query = event.target.value.toLowerCase();
+    setSearchQuery(query);
+
+    if (query === "") {
+      // Reset to first page if search is cleared
+      setVisibleCharacters(allCharacters.slice(0, charactersPerPage));
+      setCurrentPage(1);
+    } else {
+      const filteredCharacters = allCharacters.filter((character) =>
+        character.name.toLowerCase().includes(query)
+      );
+      setVisibleCharacters(filteredCharacters);
+    }
+  };
+
   return (
     <div className={styles.characters}>
       <h1>Characters</h1>
+
+      {/* Search Input */}
+      <input
+        type="text"
+        placeholder="Search characters..."
+        value={searchQuery}
+        onChange={handleSearch}
+        className={styles.searchInput}
+      />
+
       <ul>
         {visibleCharacters.map((character) => (
           <li key={character.id} className={styles.card}>
@@ -66,11 +93,17 @@ function Characters() {
 
       {loading && <p>Loading all characters...</p>}
 
-      {!loading && visibleCharacters.length < allCharacters.length && (
-        <button onClick={handleLoadMore} className={styles.loadMore}>
-          Load More
-        </button>
+      {!loading && visibleCharacters.length === 0 && (
+        <p>No characters found.</p>
       )}
+
+      {!loading &&
+        visibleCharacters.length < allCharacters.length &&
+        searchQuery === "" && (
+          <button onClick={handleLoadMore} className={styles.loadMore}>
+            Load More
+          </button>
+        )}
     </div>
   );
 }

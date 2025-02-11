@@ -40,3 +40,15 @@
 .loadMore:hover {
   background-color: #21a1f1;
 }
+
+/* Step 3 Add search */
+.searchInput {
+  width: 100%;
+  max-width: 400px;
+  padding: 0.5rem;
+  margin: 1rem auto;
+  display: block;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
