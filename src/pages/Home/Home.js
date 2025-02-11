@@ -6,7 +6,8 @@ function Home() {
     <div className={styles.hero}>
       <div className={styles.overlay}>
         <h1>Welcome to the Rick & Morty Universe</h1>
-        <Link to="/characters" className={styles.cta}>Explore Characters</Link>      </div>
+        <Link to="/characters" className={styles.cta}>Explore Characters</Link>
+      </div>
     </div>
   );
 }
