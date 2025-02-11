@@ -2,6 +2,8 @@
 
 A React Single Page Application (SPA) that displays characters from the Rick and Morty universe using the [Rick and Morty API](https://rickandmortyapi.com/). The app allows users to browse characters, view detailed information, and search for specific characters.
 
+See the finished app at Netlify: https://rick-and-morty-noroff-2025.netlify.app/
+
 ## Features
 
 - **Character Listing:** View a paginated list of characters with images and names.
