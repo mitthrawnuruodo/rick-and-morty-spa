@@ -22,3 +22,21 @@
 .card h2 {
   font-family: 'Roboto', sans-serif; /* Use Roboto for the character names */
 }
+
+/* Step 1 Add pagination */
+.loadMore {
+  background-color: #61dafb;
+  color: black;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin: 1rem auto;
+  display: block;
+  transition: background-color 0.3s;
+}
+
+.loadMore:hover {
+  background-color: #21a1f1;
+}
